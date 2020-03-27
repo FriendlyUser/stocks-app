@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using C_.Data;
+using stock_notifications.Data;
 
-namespace C_
+namespace stock_notifications
 {
     public class Startup
     {

@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace C_.Data
+namespace stock_notifications.Data
 {
     public class WeatherForecastService
     {

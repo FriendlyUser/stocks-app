@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>C_</RootNamespace>
+    <RootNamespace>stock_notifications</RootNamespace>
   </PropertyGroup>
 
 </Project>

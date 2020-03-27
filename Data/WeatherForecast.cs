@@ -1,6 +1,6 @@
 using System;
 
-namespace C_.Data
+namespace stock_notifications.Data
 {
     public class WeatherForecast
     {
