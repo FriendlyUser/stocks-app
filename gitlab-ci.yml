@@ -1,0 +1,12 @@
+image: mcr.microsoft.com/dotnet/core/aspnet:3.1
+
+stages:
+  - build
+
+build-file:
+  stage: build
+  script:
+    - dotnet build --configuration Release
+    - ls
+    - ls Release
+  
