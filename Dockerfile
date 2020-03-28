@@ -1,12 +1,26 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1
-EXPOSE 80
-EXPOSE 443
-EXPOSE 5000
-EXPOSE 5001
+# Use Microsoft's official build .NET image.
+# https://hub.docker.com/_/microsoft-dotnet-core-sdk/
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine AS build
 WORKDIR /app
-# Copy everything and build
+
+# Install production dependencies.
+# Copy csproj and restore as distinct layers.
+COPY *.csproj ./
+RUN dotnet restore
+
+# Copy local code to the container image.
 COPY . ./
-RUN dotnet restore "./stock-notifications.csproj"
-RUN dotnet publish "./stock-notifications.csproj" -c Release
-RUN dotnet publish -c Release
-ENV SHELL /bin/bash
+WORKDIR /app
+
+# Build a release artifact.
+RUN dotnet publish -c Release -o out
+
+
+# Use Microsoft's official runtime .NET image.
+# https://hub.docker.com/_/microsoft-dotnet-core-aspnet/
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine AS runtime
+WORKDIR /app
+COPY --from=build /app/out ./
+
+# Run the web service on container startup.
+ENTRYPOINT ["dotnet", "stock-notifications.dll"]
