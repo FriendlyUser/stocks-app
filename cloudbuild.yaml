@@ -1,4 +1,4 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/blazor-app-272400/stock_notifications', '.']
-images: ['gcr.io/blazor-app-272400/stock_notifications']
+  args: ['build', '-t', 'gcr.io/stocks-272500/blazornot', '.']
+images: ['gcr.io/stocks-272500/blazornot']
