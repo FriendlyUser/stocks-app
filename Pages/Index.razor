@@ -1,7 +1,48 @@
 ﻿@page "/"
 
+@using stock_notifications.Data
+@inject NewsService Service
+
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>guid</th>
+                <th>Description</th>
+                <th>Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast._source.guid</td>
+                    <td>@forecast._source.description</td>
+                    <td>@forecast._source.title</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Source[] forecasts;
+
+    protected override void OnInitialized()
+    {
+        forecasts = Service.GetNews();
+    }
+}

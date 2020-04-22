@@ -5,4 +5,8 @@
     <RootNamespace>stock_notifications</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Elasticsearch.Net" Version="7.6.1" />
+  </ItemGroup>
+
 </Project>
