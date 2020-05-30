@@ -28,9 +28,9 @@ namespace stock_notifications.Data
       public string value {get; set;}
     }
 
-    static readonly HttpClient client = new HttpClient();
     public class FredService
     {
+        static readonly HttpClient client = new HttpClient();
 
         public async Task<FredObservation> GetObservationsForSeries(String series_id)
         {
