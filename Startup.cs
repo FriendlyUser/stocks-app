@@ -31,6 +31,7 @@ namespace stock_notifications
             // add services here
             services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<NewsService>();
+            services.AddSingleton<FredService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
