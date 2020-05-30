@@ -1,4 +1,16 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/stocks-272500/blazornot', '.']
+# Deploy image to Cloud Run
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - 'run'
+  - 'deploy'
+  - 'stocks'
+  - '--image'
+  - 'gcr.io/stocks-272500/blazornot:latest'
+  - '--region'
+  - 'us-west1'
+  - '--platform'
+  - 'managed'
 images: ['gcr.io/stocks-272500/blazornot']
