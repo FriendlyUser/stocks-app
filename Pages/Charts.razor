@@ -1,14 +1,14 @@
 @page "/charts"
+@using System
 @using ChartJs.Blazor.Charts
 @using ChartJs.Blazor.ChartJS
 @using ChartJs.Blazor.ChartJS.Common.Properties
 @using ChartJs.Blazor.ChartJS.Common.Enums
 @using ChartJs.Blazor.ChartJS.Common.Axes
 @using ChartJs.Blazor.ChartJS.Common.Axes.Ticks
-@using ChartJs.Blazor.ChartJS.Common
+@using ChartJs.Blazor.ChartJS.Common.Handlers
 @using ChartJs.Blazor.ChartJS.Common.Time
 @using ChartJs.Blazor.ChartJS.LineChart
-@using ChartJs.Blazor.Interop
 @using ChartJs.Blazor.Util
 @using stock_notifications.Data
 @inject IJSRuntime JsRuntime
@@ -25,9 +25,8 @@
     LineConfig _lineConfig;
     ChartJsLineChart _lineChartJs;
     const string DeCh = "de-ch";
-    LineDataset<TimePoint> _tempDataSet;
+    LineDataset<TimeTuple<double>> _tempDataSet;
     private bool _localeChangeWasAttempted = false;
-    private bool _filled;
 
     readonly FredService _fredService = new FredService();
 
@@ -61,7 +60,7 @@
                 Legend = new Legend
                 {
                     Position = Position.Right,
-                    Labels = new LegendLabels
+                    Labels = new LegendLabelConfiguration
                     {
                         UsePointStyle = true
                     }
@@ -73,7 +72,7 @@
                 },
                 Scales = new Scales
                 {
-                    XAxes = new List<CartesianAxis>
+                    xAxes = new List<CartesianAxis>
                     {
                         new TimeAxis
                         {
@@ -96,7 +95,7 @@
                         }
                     }
                 },
-                Hover = new Hover
+                Hover = new LineOptionsHover
                 {
                     Intersect = true,
                     Mode = InteractionMode.Y
@@ -106,19 +105,21 @@
 
         var fred_data = await _fredService.GetObservationsForSeries("GNPCA");
 
-        _tempDataSet = new LineDataset<TimePoint>
+        _tempDataSet = new LineDataset<TimeTuple<double>>
         {
             BackgroundColor = ColorUtil.RandomColorString(),
             BorderColor = ColorUtil.RandomColorString(),
-            Label = "GNPCA Data",
-            Fill = FillingMode.Disabled,
+            Label = "Fred Data",
+            Fill = false,
             BorderWidth = 2,
             PointRadius = 3,
             PointBorderWidth = 1,
             SteppedLine = SteppedLine.False
         };
-
-        _tempDataSet.AddRange(fred_data.observations.Select(p => new TimePoint(p.date, p.value)));
+        var fred_data_range = fred_data.observations.Select(p => new TimeTuple<double>(
+            new Moment(Convert.ToDateTime(p.date)), Convert.ToDouble(p.value)
+        ));
+        _tempDataSet.AddRange(fred_data_range);
         _lineConfig.Data.Datasets.Add(_tempDataSet);
     }
 
@@ -129,7 +130,7 @@
 
     private async Task OnClick()
     {
-        _tempDataSet.Fill = (_filled = !_filled);
+        _tempDataSet.Fill = !_tempDataSet.Fill;
         await _lineChartJs.Update();
     }
 }

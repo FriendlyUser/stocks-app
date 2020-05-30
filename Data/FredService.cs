@@ -6,7 +6,6 @@ using System.Text.Json.Serialization;
 using static System.Web.HttpUtility;
 namespace stock_notifications.Data
 {
-
     public class FredObservation {
       public string realtime_start {get; set;}
       public string realtime_end {get; set;}
@@ -44,7 +43,7 @@ namespace stock_notifications.Data
             var observation_url = builder.ToString();
             HttpResponseMessage response = await client.GetAsync(observation_url);
             string responseBody = await response.Content.ReadAsStringAsync();
-            var new_data = JsonSerializer.Deserialize<fredObservation>(
+            var new_data = JsonSerializer.Deserialize<FredObservation>(
               responseBody,
               new JsonSerializerOptions {AllowTrailingCommas = true}
             );
