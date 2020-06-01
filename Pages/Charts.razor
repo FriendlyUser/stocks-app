@@ -103,13 +103,13 @@
             }
         };
 
-        var fred_data = await _fredService.GetObservationsForSeries("GNPCA");
+        var fred_data = await _fredService.GetObservationsForSeries("HDTGPDCAQ163N");
 
         _tempDataSet = new LineDataset<TimeTuple<double>>
         {
             BackgroundColor = ColorUtil.RandomColorString(),
             BorderColor = ColorUtil.RandomColorString(),
-            Label = "Fred Data",
+            Label = "Household Debt to GDP for Canada",
             Fill = false,
             BorderWidth = 2,
             PointRadius = 3,
