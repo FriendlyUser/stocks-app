@@ -50,6 +50,18 @@ namespace stock_notifications.Data
                 responseBody,
                 new JsonSerializerOptions {AllowTrailingCommas = true}
               );
+              // iterate across observations and clean data
+              int last_good_value = "";
+              for (int i = 0; i < new_data.observations.Length; i += 1)
+              {
+                  var observation = new_data.observations[i];
+                  try {
+                      last_good_value = Convert.ToDouble(observation.value);
+                  } catch(FormatException e) {
+                      Console.WriteLine(e);
+                      new_data.observations[i].value = last_good_value;
+                  }
+              }
               return new_data;
             }
             catch 
