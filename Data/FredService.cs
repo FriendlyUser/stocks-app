@@ -51,7 +51,7 @@ namespace stock_notifications.Data
                 new JsonSerializerOptions {AllowTrailingCommas = true}
               );
               // iterate across observations and clean data
-              int last_good_value = "";
+              double last_good_value = 0.0;
               for (int i = 0; i < new_data.observations.Length; i += 1)
               {
                   var observation = new_data.observations[i];
