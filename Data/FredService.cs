@@ -40,7 +40,7 @@ namespace stock_notifications.Data
               query["series_id"] = series_id;
               string fred_api_key = Environment.GetEnvironmentVariable("FRED_APIKEY");
               query["api_key"] = fred_api_key;
-              query["realtime_start"] = "1960-01-01"
+              query["realtime_start"] = "2000-01-01"
               query["file_type"] = "json";
               builder.Query = query.ToString();
               var observation_url = builder.ToString();
