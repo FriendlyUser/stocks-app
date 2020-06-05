@@ -40,7 +40,6 @@ namespace stock_notifications.Data
               query["series_id"] = series_id;
               string fred_api_key = Environment.GetEnvironmentVariable("FRED_APIKEY");
               query["api_key"] = fred_api_key;
-              query["realtime_start"] = "2000-01-01";
               query["file_type"] = "json";
               builder.Query = query.ToString();
               var observation_url = builder.ToString();
@@ -51,7 +50,7 @@ namespace stock_notifications.Data
                 new JsonSerializerOptions {AllowTrailingCommas = true}
               );
               // iterate across observations and clean data
-              string last_good_value = "";
+              string last_good_value = "0.0";
               for (int i = 0; i < new_data.observations.Length; i += 1)
               {
                   var observation = new_data.observations[i];
@@ -60,6 +59,7 @@ namespace stock_notifications.Data
                       last_good_value = observation.value;
                   } catch(FormatException e) {
                       Console.WriteLine(e);
+                      // delete observations instead????
                       new_data.observations[i].value = last_good_value;
                   }
               }
