@@ -33,21 +33,28 @@ namespace stock_notifications.Data
 
         public async Task<FredObservation> GetObservationsForSeries(String series_id)
         {
-            var builder = new UriBuilder("https://api.stlouisfed.org/fred/series/observations");
-            var query = ParseQueryString(builder.Query);
-            query["series_id"] = series_id;
-            string fred_api_key = Environment.GetEnvironmentVariable("FRED_APIKEY");
-            query["api_key"] = fred_api_key;
-            query["file_type"] = "json";
-            builder.Query = query.ToString();
-            var observation_url = builder.ToString();
-            HttpResponseMessage response = await client.GetAsync(observation_url);
-            string responseBody = await response.Content.ReadAsStringAsync();
-            var new_data = JsonSerializer.Deserialize<FredObservation>(
-              responseBody,
-              new JsonSerializerOptions {AllowTrailingCommas = true}
-            );
-            return new_data;
+            try
+            {
+              var builder = new UriBuilder("https://api.stlouisfed.org/fred/series/observations");
+              var query = ParseQueryString(builder.Query);
+              query["series_id"] = series_id;
+              string fred_api_key = Environment.GetEnvironmentVariable("FRED_APIKEY");
+              query["api_key"] = fred_api_key;
+              query["file_type"] = "json";
+              builder.Query = query.ToString();
+              var observation_url = builder.ToString();
+              HttpResponseMessage response = await client.GetAsync(observation_url);
+              string responseBody = await response.Content.ReadAsStringAsync();
+              var new_data = JsonSerializer.Deserialize<FredObservation>(
+                responseBody,
+                new JsonSerializerOptions {AllowTrailingCommas = true}
+              );
+              return new_data;
+            }
+            catch 
+            {
+              return new FredObservation();
+            }
         }
     }
 }

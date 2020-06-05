@@ -13,7 +13,7 @@
 @inject IJSRuntime JsRuntime
 
 <h2>Household Debt</h2>
-<ChartJsLineChart @ref="_LRUNTTTTCAM156S" Config="@_lineConfig" Width="600" Height="300" />
+<ChartJsLineChart @ref="_lineChartJs" Config="@_lineConfig" Width="600" Height="300" />
 
 <div class="row">
     <button class="btn btn-primary" @onclick="OnClick">Unemployment Rate: Aged 15 and Over: All Persons for Canada</button>
@@ -22,7 +22,7 @@
 @code
 {
     LineConfig _lineConfig;
-    ChartJsLineChart _LRUNTTTTCAM156S;
+    ChartJsLineChart _lineChartJs;
     const string DeCh = "de-ch";
     LineDataset<TimeTuple<double>> _tempDataSet;
     private bool _localeChangeWasAttempted = false;
@@ -130,6 +130,6 @@
     private async Task OnClick()
     {
         _tempDataSet.Fill = !_tempDataSet.Fill;
-        await _LRUNTTTTCAM156S.Update();
+        await _lineChartJs.Update();
     }
 }
