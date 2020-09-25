@@ -1,13 +1,4 @@
 steps:
-# Delete old images
-- name: 'gcr.io/cloud-builders/gcloud'
-  args:
-  - 'container'
-  - 'images'
-  - 'delete'
-  - 'gcr.io/stocks-272500/stocksapp'
-  - '--force-delete-tags'
-  - '--quiet'
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/stocks-272500/stocksapp', '.']
 - name: 'gcr.io/cloud-builders/docker'
@@ -24,3 +15,11 @@ steps:
   - 'us-west1'
   - '--platform'
   - 'managed'
+# Delete old images
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - 'container'
+  - 'images'
+  - 'delete'
+  - 'gcr.io/stocks-272500/stocksapp'
+  - '--quiet'
