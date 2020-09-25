@@ -29,6 +29,7 @@ namespace stock_notifications
     {
       services.AddMvc(options => options.EnableEndpointRouting = false)
         .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+      services.AddControllers();
       services.AddRazorPages();
       services.AddServerSideBlazor();
       // add services here

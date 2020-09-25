@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace stock_notifications.Api
+namespace stock_notifications.Controllers
 {
-  [Route("api/[controller]")]
+  [Route("[controller]")]
   [ApiController]
   public class TestController : ControllerBase
   {
@@ -19,7 +19,7 @@ namespace stock_notifications.Api
     }
 
     // GET: api/Test/5
-    [HttpGet("{id}", Name = "Get")]
+    [HttpGet("/api", Name = "Get")]
     public string Get(int id)
     {
       return "value";

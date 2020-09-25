@@ -10,6 +10,11 @@ Mainly charts using chartjs and fred data.
 dotnet build
 ```
 
+
+```
+dotnet build -o app
+dotnet run app
+```
 Mainly used to learn how razor works and how to fetch data from various apis.
 
 
