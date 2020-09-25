@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BlazorServerWebApi.Api
+namespace stock_notifications.Api
 {
   [Route("api/[controller]")]
   [ApiController]
