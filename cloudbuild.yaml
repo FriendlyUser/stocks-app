@@ -1,6 +1,14 @@
 steps:
+# Delete old images
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - 'container'
+  - 'images'
+  - 'delete'
+  - 'gcr.io/stocks-272500/stocksapp@DIGEST'
+  - '--quiet'
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/stocks-272500/stocksapp', 'latest']
+  args: ['build', '-t', 'gcr.io/stocks-272500/stocksapp', '.']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/stocks-272500/stocksapp:latest']
 # Deploy image to Cloud Run
