@@ -5,7 +5,7 @@ steps:
   - 'container'
   - 'images'
   - 'delete'
-  - 'gcr.io/stocks-272500/stocksapp@latest'
+  - 'gcr.io/stocks-272500/stocksapp:latest'
   - '--quiet'
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/stocks-272500/stocksapp', '.']
