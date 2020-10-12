@@ -8,6 +8,7 @@
   <ItemGroup>
     <PackageReference Include="ChartJs.Blazor" Version="1.1.0" />
     <PackageReference Include="Elasticsearch.Net" Version="7.6.1" />
+    <PackageReference Include="VSLee.IEXSharp" Version="2.4.3" />
   </ItemGroup>
 
 </Project>

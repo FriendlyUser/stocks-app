@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace stock_notifications.Controllers
 {
   // The first one specifies the route for actions in this controller as being api/[controller] which means if the controller is named GamesController the route will be api/Games.
-  [Route("api/[controller]")]
+  [Route("/api/[controller]")]
   // The second attribute, [ApiController], adds some useful validations to the class, such as ensuring every action method includes its own [Route] attribute.
   [ApiController]
   public class TestController : ControllerBase
