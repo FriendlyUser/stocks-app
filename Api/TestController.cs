@@ -46,7 +46,7 @@ namespace stock_notifications.Controllers
     [HttpDelete("{id}")]
     public void Delete(int id)
     {
-      return "More of Nothing"
+      return "More of Nothing";
     }
   }
 }
