@@ -1,8 +1,8 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/stocks-272500/blazornot', '.']
+  args: ['build', '-t', 'gcr.io/stocks-272500/stocksapp', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/stocks-272500/blazornot']
+  args: ['push', 'gcr.io/stocks-272500/stocksapp:latest']
 # Deploy image to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
@@ -10,8 +10,16 @@ steps:
   - 'deploy'
   - 'stocks'
   - '--image'
-  - 'gcr.io/stocks-272500/blazornot:latest'
+  - 'gcr.io/stocks-272500/stocksapp:latest'
   - '--region'
   - 'us-west1'
   - '--platform'
   - 'managed'
+# Delete old images
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - 'container'
+  - 'images'
+  - 'delete'
+  - 'gcr.io/stocks-272500/stocksapp'
+  - '--quiet'
