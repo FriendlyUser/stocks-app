@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace stock_notifications.Controllers
 {
-  [Route("[controller]")]
+  // The first one specifies the route for actions in this controller as being api/[controller] which means if the controller is named GamesController the route will be api/Games.
+  [Route("api/[controller]")]
+  // The second attribute, [ApiController], adds some useful validations to the class, such as ensuring every action method includes its own [Route] attribute.
   [ApiController]
   public class TestController : ControllerBase
   {
@@ -19,7 +21,7 @@ namespace stock_notifications.Controllers
     }
 
     // GET: api/Test/5
-    [HttpGet("/api", Name = "Get")]
+    [HttpGet("{id}", Name = "Get")]
     public string Get(int id)
     {
       return "value";
@@ -35,12 +37,14 @@ namespace stock_notifications.Controllers
     [HttpPut("{id}")]
     public void Put(int id, [FromBody] string value)
     {
+      return "Nothing";
     }
 
     // DELETE: api/ApiWithActions/5
     [HttpDelete("{id}")]
     public void Delete(int id)
     {
+      return "More of Nothing"
     }
   }
 }
