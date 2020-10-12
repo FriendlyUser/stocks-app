@@ -14,6 +14,7 @@ namespace stock_notifications.Controllers
   public class TestController : ControllerBase
   {
     // GET: api/Test
+    // these extra routes are just extra, controller takes care of api/Test
     [Route("/api/Test2")]
     [HttpGet]
     public IEnumerable<string> Get()
@@ -37,7 +38,7 @@ namespace stock_notifications.Controllers
     }
 
     // PUT: api/Test/5
-    [HttpPut("{id}")]
+    [HttpPut("api/Test2/{id}")]
     public string Put(int id, [FromBody] string value)
     {
       return "Nothing";
