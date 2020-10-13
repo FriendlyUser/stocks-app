@@ -24,11 +24,9 @@ namespace stock_notifications.Services
       string IEX_PUBLISHABLE_KEY = Environment.GetEnvironmentVariable("IEX_PUBLISHABLE_KEY");
       if (IEX_SECRET_KEY == null) {
         Console.WriteLine("MISSING IEX_SECRET_KEY");
-        Environment.Exit(1);
       }
       if (IEX_PUBLISHABLE_KEY == null) {
         Console.WriteLine("MISSING IEX_PUBLISHABLE_KEY");
-        Environment.Exit(1);
       }
       client = new IEXCloudClient(
         IEX_PUBLISHABLE_KEY,
@@ -38,6 +36,12 @@ namespace stock_notifications.Services
       ); 
     }
 
+    // add https://iexcloud.io/docs/api/#insider-summary
+    // https://iexcloud.io/docs/api/#balance-sheet
+    // https://iexcloud.io/docs/api/#ipo-calendar
+    // https://iexcloud.io/docs/api/#sector-performance
+    // https://iexcloud.io/docs/api/#upcoming-events
+    // https://iexcloud.io/docs/api/#news
     public IEXCloudClient getClient() {
       return client;
     }
