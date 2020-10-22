@@ -24,7 +24,6 @@ namespace stock_notifications.Controllers
 
     // GET: api/Test/5
     [Route("/api/Test2/{id}")]
-    [HttpGet("{id}", Name = "Get")]
     public string Get(int id)
     {
       return "value";

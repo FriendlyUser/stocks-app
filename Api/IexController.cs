@@ -17,7 +17,6 @@ namespace stock_notifications.Controllers
 
     // GET: api/iex/stock/appl
     [Route("/api/iex/stock/{stock}")]
-    [HttpGet("{stock}", Name="GetStock")]
     public async Task<List<HistoricalPriceResponse>> GetStock(string stock)
     {
         var data = await iexService.StockPrices(stock);
@@ -38,8 +37,6 @@ namespace stock_notifications.Controllers
       return "Nothing";
     }
 
-    // DELETE: api/ApiWithActions/5
-    [HttpDelete("{id}")]
     public string Delete(int id)
     {
       return "More of Nothing";

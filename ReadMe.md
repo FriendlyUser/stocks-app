@@ -16,6 +16,12 @@ dotnet build
 dotnet build -o app
 dotnet run app
 ```
+
+Do not use `[HttpGet("{id}", Name = "Get")]` in blazor as the `{id}`
+will prevent any subroutes from being accessed.
+
+// Figure out async blazor logic
+
 Mainly used to learn how razor works and how to fetch data from various apis.
 
 

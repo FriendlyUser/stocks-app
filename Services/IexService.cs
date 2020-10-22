@@ -7,7 +7,6 @@ using IEXSharp.Model.CoreData.StockPrices.Request;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using IEXSharp.Helper;
-using IEXSharp.Model.CoreData.StockPrices.Request;
 using IEXSharp.Model.CoreData.StockPrices.Response;
 using System.Collections.Generic;
 namespace stock_notifications.Services
@@ -46,6 +45,7 @@ namespace stock_notifications.Services
       return client;
     }
 
+    // options to increase range
     public async Task<List<HistoricalPriceResponse>> StockPrices(string stock)
     {
       var response = await client.StockPrices.HistoricalPriceAsync(stock, ChartRange.OneMonth);

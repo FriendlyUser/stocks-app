@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using stock_notifications.Data;
+using stock_notifications.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace stock_notifications
@@ -36,6 +37,7 @@ namespace stock_notifications
       services.AddSingleton<WeatherForecastService>();
       services.AddSingleton<NewsService>();
       services.AddSingleton<FredService>();
+      services.AddSingleton<IexService>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
