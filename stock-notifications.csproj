@@ -3,11 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>stock_notifications</RootNamespace>
+    <IsPackable>false</IsPackable>
+    <GenerateProgramFile>false</GenerateProgramFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="ChartJs.Blazor" Version="1.1.0" />
     <PackageReference Include="Elasticsearch.Net" Version="7.6.1" />
+    <PackageReference Include="VSLee.IEXSharp" Version="2.4.3" />
   </ItemGroup>
 
 </Project>

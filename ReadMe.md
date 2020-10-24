@@ -6,6 +6,7 @@ Prefer to use command line, not the one embeeded inside vs code.
 
 Mainly charts using chartjs and fred data.
 
+
 ```
 dotnet build
 ```
@@ -15,7 +16,20 @@ dotnet build
 dotnet build -o app
 dotnet run app
 ```
+
+Do not use `[HttpGet("{id}", Name = "Get")]` in blazor as the `{id}`
+will prevent any subroutes from being accessed.
+
+// Figure out async blazor logic
+
 Mainly used to learn how razor works and how to fetch data from various apis.
+
+
+## Lessons Learned
+
+- Blazor Server is just a regular C# server, this allows you to setup api endpoints using standard ASP.NET
+- Google cloud run can pretty much deploy any containized application
+- IexApi (insert after done)
 
 
 ## Todolist
