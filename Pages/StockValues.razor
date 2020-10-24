@@ -3,10 +3,18 @@
 @using stock_notifications.Services
 @using IEXSharp.Model.CoreData.StockPrices.Response
 @inject IexService SampleService
+@inject NavigationManager NavManager
 
 <h1>Stock Data in Tabular Format</h1>
 
+<button class="btn btn-primary" @onclick="@(() => NavManager.NavigateTo("stockvalues?stock=NEXCF"))">Go To Nexcf</button>
 
+<input @bind-value="currStock" @bind-value:event="oninput" />
+
+
+<button class="btn btn-primary" @onclick="fetchData">
+    Refetch Data
+</button>
 
 @if (stockPrices == null)
 {
@@ -14,6 +22,7 @@
 }
 else
 {
+    <h2>@currStock</h2>
     <table class="table">
         <thead>
             <tr>
@@ -36,11 +45,26 @@ else
 }
 
 @code {
+    // see https://docs.microsoft.com/en-us/aspnet/core/blazor/fundamentals/dependency-injection?view=aspnetcore-3.1
     private List<HistoricalPriceResponse> stockPrices;
-    // use a isLoading flag instead
-    protected override async void OnInitialized()
+    private string currStock = "";
+    protected override async Task OnInitializedAsync()
     {
-        stockPrices = await SampleService.StockPrices("AAPL");
-        return;
+        try {
+            NavManager.TryGetQueryString<string>("stock", out currStock);
+            if (currStock == null || currStock == "") {
+                currStock = "AAPL";
+            }
+            stockPrices = await SampleService.StockPrices(currStock);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+    private async void fetchData(MouseEventArgs e)
+    {
+        stockPrices = await SampleService.StockPrices(currStock);
     }
 }
